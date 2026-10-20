@@ -1,0 +1,684 @@
+<title>Kevin Pearce</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap">
+<style>
+/* Layout: vertical scroll narrative, full-bleed sections alternating dark/light */
+:root {
+  --bg: #f5f4f0;
+  --fg: #1a1a1a;
+  --fg-muted: #6b6560;
+  --accent: #c0392b;
+  --surface: #ffffff;
+  --surface-alt: #111111;
+  --surface-alt-fg: #e8e6e2;
+  --border: rgba(0,0,0,0.08);
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111;
+    --fg: #e8e6e2;
+    --fg-muted: #9a9590;
+    --accent: #e74c3c;
+    --surface: #1a1917;
+    --surface-alt: #f5f4f0;
+    --surface-alt-fg: #1a1a1a;
+    --border: rgba(255,255,255,0.08);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111111;
+  --fg: #e8e6e2;
+  --fg-muted: #9a9590;
+  --accent: #e74c3c;
+  --surface: #1a1917;
+  --surface-alt: #f5f4f0;
+  --surface-alt-fg: #1a1a1a;
+  --border: rgba(255,255,255,0.08);
+  color-scheme: dark;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-weight: 400;
+  line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+* { box-sizing: border-box; margin: 0; }
+
+.container { max-width: 720px; margin: 0 auto; }
+
+/* Hero */
+.hero {
+  padding: 15vh 0 8vh;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 6px 18px;
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.08;
+  text-wrap: balance;
+  margin-bottom: 1.2rem;
+}
+.hero .subtitle {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--fg-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.hero .source {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Divider */
+.divider {
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin: 4rem auto;
+  border: none;
+}
+
+/* Sections */
+.chapter {
+  margin-bottom: 5rem;
+}
+.chapter-label {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+.chapter h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.15;
+  text-wrap: balance;
+  margin-bottom: 1.5rem;
+}
+.chapter p {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+.chapter p:last-child { margin-bottom: 0; }
+
+/* Quote block */
+.quote-block {
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.8rem;
+  margin: 2.5rem 0;
+  background: var(--surface);
+  border-radius: 0 6px 6px 0;
+  padding-right: 1.5rem;
+}
+.quote-block p {
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--fg);
+}
+.quote-block .attribution {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+  margin: 3rem 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  opacity: 0.3;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  background: var(--bg);
+}
+.timeline-item h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+.timeline-item .time {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.timeline-item p {
+  font-size: 0.95rem;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+/* Inverted section */
+.inverted {
+  background: var(--surface-alt);
+  color: var(--surface-alt-fg);
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding: 5rem max(16px, env(safe-area-inset-right, 0px)) 5rem max(16px, env(safe-area-inset-left, 0px));
+  margin-bottom: 5rem;
+}
+.inverted .chapter-label { color: var(--accent); }
+.inverted .quote-block { background: rgba(128,128,128,0.1); }
+.inverted .quote-block p { color: var(--surface-alt-fg); }
+.inverted .timeline-item::before { background: var(--surface-alt); }
+.inverted .timeline-item p { color: inherit; opacity: 0.7; }
+
+/* Stat row */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 2.4rem;
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-top: 0.5rem;
+}
+.inverted .stat-label { color: inherit; opacity: 0.6; }
+
+/* Scroll animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.quote-block.reveal {
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
+}
+.quote-block.reveal.visible {
+  transform: translateX(0);
+}
+.stat.reveal {
+  transform: translateY(20px);
+  transition: opacity 0.5s ease var(--delay, 0s), transform 0.5s ease var(--delay, 0s);
+}
+.stat.reveal.visible {
+  transform: translateY(0);
+}
+.timeline-item.reveal-left {
+  transition-delay: var(--delay, 0s);
+}
+
+/* Stat counter animation */
+.stat-value[data-target] {
+  transition: color 0.3s;
+}
+
+/* Quiz */
+.quiz-q {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.quiz-q:last-child { border-bottom: none; }
+.quiz-q h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.quiz-q .q-num {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.quiz-opt:hover:not(.locked) { border-color: var(--accent); }
+.quiz-opt.correct {
+  border-color: #27ae60;
+  background: rgba(39,174,96,0.1);
+  color: #27ae60;
+  font-weight: 600;
+}
+.quiz-opt.wrong {
+  border-color: #c0392b;
+  background: rgba(192,57,43,0.08);
+  color: #c0392b;
+  opacity: 0.7;
+}
+.quiz-opt.locked { cursor: default; }
+.quiz-explain {
+  margin-top: 0.8rem;
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border-left: 3px solid #27ae60;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 4rem 0 5rem;
+  border-top: 1px solid var(--border);
+}
+.footer p {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  line-height: 1.7;
+}
+.footer .badge {
+  display: inline-block;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  margin-bottom: 1rem;
+}
+</style>
+
+<div class="container">
+  <section class="hero">
+    <div class="hero-badge">IFSI La Verrière</div>
+    <h1>Kevin Pearce<br>De la chute à la renaissance</h1>
+    <p class="subtitle">L'histoire d'un snowboardeur professionnel, au sommet de sa carrière, dont la vie a basculé en un instant — et de sa longue reconstruction.</p>
+    <p class="source">D'après <em>The Crash Reel</em> &middot; Témoignages de la famille</p>
+  </section>
+
+  <hr class="divider">
+
+  <section class="chapter">
+    <div class="chapter-label">Chapitre I</div>
+    <h2 class="reveal">Un prodige du freestyle</h2>
+    <p>Originaire des États-Unis, Kevin Pearce se distingue dès ses débuts dans le snowboard professionnel par une approche singulière : un style tout en fluidité, une aisance naturelle dans les airs et un goût prononcé pour l'innovation technique en freestyle.</p>
+    <p>En quelques saisons, il devient l'un des riders les plus regardés de sa discipline, souvent cité comme le concurrent le plus sérieux face à Shaun White. Le public et les médias sont captivés autant par ses performances que par sa personnalité.</p>
+  </section>
+
+  <section class="chapter">
+    <div class="chapter-label">Chapitre II</div>
+    <h2 class="reveal">L'accident</h2>
+    <p>Tôt le matin à Méribel, pendant une session d'entraînement qui ne laissait rien présager, Kevin est victime d'une chute de près de sept mètres. Il reçoit l'impact directement sur la tête.</p>
+    <p>D'après les témoins, sa board s'est brusquement plantée dans la neige en pleine descente, lui faisant perdre tout contrôle. On le retrouve inconscient au sol. Une séance ordinaire vient de tourner au drame.</p>
+    <p>La diffusion non autorisée de son dossier médical rend la situation publique, provoquant un choc dans son entourage, chez ses supporters et dans l'ensemble du milieu du snowboard.</p>
+  </section>
+</div>
+
+<section class="inverted">
+  <div class="container">
+    <div class="chapter-label">Chapitre III</div>
+    <h2 class="reveal">Les secours</h2>
+    <p>Les équipes de secours interviennent très rapidement après l'alerte. L'état de Kevin est préoccupant : s'il respire encore, sa pupille gauche présente une dilatation anormale et son score sur l'échelle de Glasgow est extrêmement bas — des signes révélateurs d'un traumatisme neurologique sévère.</p>
+
+    <div class="quote-block reveal">
+      <p>« Il a d'abord fallu calmer les personnes présentes et la compagne de la victime, puis nous avons pu nous concentrer pleinement sur Kevin. Nous avons immédiatement constaté une fracture à la jambe. Sa pupille gauche était dilatée et son niveau de conscience était au plus bas sur l'échelle de Glasgow. »</p>
+      <p class="attribution">— Témoignage d'un secouriste présent sur les lieux</p>
+    </div>
+
+    <p>Avant l'arrivée du SMUR, les premiers intervenants assurent une oxygénation, alignent la tête avec l'axe du corps et immobilisent le rachis cervical à l'aide d'un collier.</p>
+
+    <p>Dès que le SMUR est sur place, la prise en charge s'intensifie : les médecins procèdent à l'intubation, administrent des agents sédatifs pour réduire la douleur et le stress physiologique, et mettent en place une ventilation mécanique afin de stabiliser les fonctions neurologiques pour le transport.</p>
+  </div>
+</section>
+
+<div class="container">
+  <section class="chapter">
+    <div class="chapter-label">Chapitre IV</div>
+    <h2 class="reveal">Le diagnostic</h2>
+    <p>Un hélicoptère le transporte jusqu'au centre hospitalier de Chambéry, où une imagerie complète est réalisée. Le bilan met en évidence un hématome sous-dural : du sang s'est accumulé entre le cerveau et ses enveloppes, générant une hypertension intracrânienne importante.</p>
+    <p>Au bloc opératoire, l'équipe chirurgicale met en place un drain ventriculaire externe (DVE) — un dispositif qui permet de drainer le liquide et le sang en excès pour soulager la pression à l'intérieur de la boîte crânienne.</p>
+    <p>Une fois l'opération terminée, Kevin est admis en service de réanimation où il fait l'objet d'une surveillance permanente.</p>
+
+    <div class="stats">
+      <div class="stat reveal" style="--delay:0s">
+        <div class="stat-value" data-target="7" data-suffix="m">0</div>
+        <div class="stat-label">Hauteur de chute</div>
+      </div>
+      <div class="stat reveal" style="--delay:0.15s">
+        <div class="stat-value" data-target="5">0</div>
+        <div class="stat-label">Jours de coma</div>
+      </div>
+      <div class="stat reveal" style="--delay:0.3s">
+        <div class="stat-value" data-target="26">0</div>
+        <div class="stat-label">Jours avant le transfert en SSR</div>
+      </div>
+      <div class="stat reveal" style="--delay:0.45s">
+        <div class="stat-value" data-target="3">0</div>
+        <div class="stat-label">Mois de rééducation</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="chapter-label">Chapitre V</div>
+    <h2 class="reveal">Le coma et le réveil</h2>
+    <p>Pour protéger son cerveau et limiter les dommages consécutifs au traumatisme, l'équipe médicale décide de l'induire dans un coma thérapeutique. Cette mise au repos contrôlée donne au corps le temps de récupérer à la suite de la chirurgie.</p>
+    <p>Au cinquième jour, la sédation est diminuée graduellement. Kevin ouvre les yeux. Le retour à la conscience se fait par étapes, lentement, mais des réactions positives apparaissent assez vite.</p>
+    <p>Après des jours d'attente et d'angoisse, ce moment représente un véritable tournant. L'espoir renaît chez ses proches comme au sein de l'équipe soignante.</p>
+  </section>
+</div>
+
+<section class="inverted">
+  <div class="container">
+    <div class="chapter-label">Chapitre VI</div>
+    <h2 class="reveal">La rééducation</h2>
+    <p>Un peu moins d'un mois après le jour de l'accident, Kevin intègre un service de Soins de Suite et de Réadaptation. Il y séjourne pendant environ trois mois, engagé dans un parcours de rééducation exigeant.</p>
+
+    <div class="timeline">
+      <div class="timeline-item reveal-left" style="--delay:0s">
+        <div class="time">Plan physique</div>
+        <h3>Vision, équilibre et motricité</h3>
+        <p>La perte de la vue d'un côté altère profondément sa perception spatiale et complique les gestes du quotidien. Des troubles de l'équilibre et de la coordination motrice imposent des séances régulières avec les kinésithérapeutes pour retrouver la capacité de marcher.</p>
+      </div>
+      <div class="timeline-item reveal-left" style="--delay:0.2s">
+        <div class="time">Plan cognitif</div>
+        <h3>Fonctions cognitives</h3>
+        <p>Les souvenirs récents lui échappent, le repérage temporel est difficile et l'apprentissage de nouvelles informations très laborieux. Un travail ciblé avec des orthophonistes et des neuropsychologues vise à relancer la concentration, l'attention et la mémorisation.</p>
+      </div>
+      <div class="timeline-item reveal-left" style="--delay:0.4s">
+        <div class="time">Entourage</div>
+        <h3>Un entourage mobilisé</h3>
+        <p>Présents chaque jour, ses proches participent activement aux exercices et aux activités de stimulation. C'est cette présence constante qui aide Kevin à ancrer ses progrès, à regagner de l'autonomie et à reconstruire sa confiance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section class="chapter">
+    <div class="chapter-label">Chapitre VII</div>
+    <h2 class="reveal">L'après : transformer l'épreuve en action</h2>
+    <p>Plutôt que de rester dans le rôle de victime, Kevin décide de mettre son histoire au service de la prévention. Il fonde une association centrée sur la sécurité en sport et la promotion du port du casque, et intervient fréquemment dans des établissements scolaires pour sensibiliser les jeunes — en leur rappelant que cette protection lui a concrètement sauvé la vie.</p>
+    <p>Son parcours de soin ne s'arrête pas pour autant : il est suivi par un neurologue qui surveille l'évolution de ses séquelles cérébrales, ainsi que par un psychologue qui l'accompagne face au poids émotionnel de tout ce qu'il a traversé.</p>
+  </section>
+
+  <section class="chapter">
+    <div class="chapter-label">Chapitre VIII</div>
+    <h2 class="reveal">Le dilemme du snowboard</h2>
+    <p>Ce qui pèse le plus sur Kevin, c'est l'envie irrépressible de remonter sur une planche. Le snowboard n'est pas seulement un sport pour lui : c'est un espace de liberté et de bonheur. Mais ni ses proches ni son équipe soignante ne cautionnent un tel retour.</p>
+
+    <div class="quote-block reveal">
+      <p>« Une personne ayant déjà subi une atteinte cérébrale a six fois plus de risques d'en subir une nouvelle. »</p>
+      <p class="attribution">— Le neurologue de Kevin Pearce</p>
+    </div>
+
+    <p>Il se retrouve tiraillé entre l'appel de ce qui fait son identité et la prudence que lui imposent les médecins et l'inquiétude de sa famille. Cette tension nourrit un état de découragement durable, accentué par l'impression de ne jamais avancer comme il le voudrait, ni en sport ni dans sa vie personnelle.</p>
+    <p>S'ajoute à cela une opération des yeux. Médicalement indispensable, elle s'avère psychologiquement éprouvante : Kevin décrit le sentiment que sa rééducation est un parcours sans fin, où chaque progrès semble en appeler un autre.</p>
+  </section>
+
+  <section class="chapter">
+    <div class="chapter-label">Chapitre IX</div>
+    <h2 class="reveal">La passion plus forte que la peur</h2>
+    <p>Mais sa famille finit par céder devant son mal-être. Encadré avec précaution et accompagné de près, Kevin remonte progressivement sur sa planche — cette planche qui incarne tout ce qu'il a failli perdre.</p>
+    <p>Chaque virage retrouvé, chaque sensation de glisse est bien davantage qu'un loisir : c'est la preuve vivante que la résilience et la volonté peuvent l'emporter sur les épreuves les plus lourdes.</p>
+    <p>Kevin doit cependant accepter une réalité douloureuse : la compétition de haut niveau, celle qui le faisait vibrer face à Shaun White, est définitivement derrière lui. Cette prise de conscience déclenche une période de dépression. Petit à petit, avec un travail sur lui-même, il parvient à faire le deuil de sa carrière et à apprécier le snowboard pour ce qu'il lui apporte encore : le plaisir pur de la glisse, sans classement ni pression.</p>
+  </section>
+
+  <section class="chapter">
+    <div class="chapter-label">Chapitre X</div>
+    <h2 class="reveal">Un héritage positif</h2>
+    <p>En 2014, Kevin cofonde avec son frère Adam la <strong>LoveYourBrain Foundation</strong>, une association dédiée à la prévention des traumatismes crâniens et à l'accompagnement des personnes touchées. À travers des programmes de yoga, de méditation et de pleine conscience, la fondation a aidé des milliers de personnes dans 35 États américains et au Canada.</p>
+    <p>Aujourd'hui, Kevin est marié et père de deux enfants. Celui qui a frôlé la mort sur une piste de Méribel mène désormais une vie de famille épanouie, tout en continuant de sensibiliser le grand public au port du casque et à la protection cérébrale.</p>
+    <p>Ce qui aurait pu n'être qu'un drame personnel est devenu un moteur de changement pour la société. L'histoire de Kevin Pearce rappelle qu'un événement dévastateur peut, avec le temps et la détermination, se transformer en quelque chose qui dépasse largement une seule vie.</p>
+  </section>
+
+  <section class="chapter" id="quiz-section">
+    <div class="chapter-label">Quiz</div>
+    <h2 class="reveal">Testez vos connaissances</h2>
+    <p style="margin-bottom:2.5rem;color:var(--fg-muted)">10 questions pour vérifier que vous avez bien suivi le parcours de Kevin Pearce.</p>
+    <div id="quiz"></div>
+    <div id="quiz-result" hidden style="text-align:center;padding:2rem 0">
+      <div style="font-family:var(--display);font-size:2.4rem;font-weight:900;color:var(--accent)" id="quiz-score"></div>
+      <p style="margin-top:.8rem;color:var(--fg-muted)">Bravo d'avoir participé !</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="badge">IFSI La Verrière News</div>
+    <p>Sources : <em>The Crash Reel</em> — Kevin Pearce<br>Témoignage de la famille</p>
+    <p style="margin-top:1.5em;font-size:.9rem;letter-spacing:.03em">Sofien Ben Salah · Chiara Desvergnes · Yanne Tchekounang Njomo</p>
+  </footer>
+</div>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Counter animation for stats
+      if (e.target.classList.contains('stat')) {
+        const val = e.target.querySelector('.stat-value[data-target]');
+        if (val && !val.dataset.done) {
+          val.dataset.done = '1';
+          const target = parseInt(val.dataset.target);
+          const suffix = val.dataset.suffix || '';
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 20));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            val.textContent = current + suffix;
+          }, 40);
+        }
+      }
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal, .reveal-left').forEach(el => obs.observe(el));
+
+// Quiz
+const questions = [
+  {
+    q: "Qui était considéré comme le principal rival de Kevin Pearce ?",
+    opts: ["Shaun White", "Mark McMorris", "Travis Rice"],
+    answer: 0,
+    explain: "Shaun White, surnommé « The Flying Tomato », est un snowboardeur et skateboardeur américain triple champion olympique en halfpipe (2006, 2010, 2018). Kevin Pearce était son rival le plus sérieux avant l'accident, les deux s'affrontant régulièrement dans les compétitions de freestyle."
+  },
+  {
+    q: "Dans quelle station l'accident de Kevin Pearce s'est-il produit ?",
+    opts: ["Val Thorens", "Méribel", "Chamonix"],
+    answer: 1,
+    explain: "L'accident a eu lieu à Méribel, en Savoie, dans les Alpes françaises. Méribel fait partie du domaine des 3 Vallées, l'un des plus grands domaines skiables au monde. Kevin s'y entraînait en vue des Jeux Olympiques de Vancouver 2010."
+  },
+  {
+    q: "De quelle hauteur approximative Kevin a-t-il chuté ?",
+    opts: ["3 mètres", "7 mètres", "12 mètres"],
+    answer: 1,
+    explain: "Kevin a chuté d'environ 7 mètres et a atterri directement sur la tête. Sa planche s'était brusquement plantée dans la neige pendant sa descente, lui faisant perdre tout contrôle. Il a été retrouvé inconscient sur la piste."
+  },
+  {
+    q: "Quel outil d'évaluation les secouristes ont-ils utilisé pour mesurer son état de conscience ?",
+    opts: ["L'échelle de Glasgow", "L'échelle de Norton", "Le score APGAR"],
+    answer: 0,
+    explain: "L'échelle de Glasgow (Glasgow Coma Scale) est un outil neurologique qui évalue le niveau de conscience d'un patient sur une échelle de 3 à 15, en mesurant l'ouverture des yeux, la réponse verbale et la réponse motrice. Le score de Kevin était au plus bas, indiquant un traumatisme neurologique sévère."
+  },
+  {
+    q: "Quel type de lésion le scanner a-t-il révélé ?",
+    opts: ["Un hématome extra-dural", "Un hématome sous-dural", "Une fracture du crâne"],
+    answer: 1,
+    explain: "Le scanner a révélé un hématome sous-dural : une accumulation de sang entre le cerveau et la dure-mère (sa membrane protectrice). Cette hémorragie provoque une hypertension intracrânienne qui, sans intervention rapide, peut entraîner des lésions cérébrales irréversibles."
+  },
+  {
+    q: "Quel dispositif chirurgical a été posé pour réduire la pression intracrânienne ?",
+    opts: ["Un shunt ventriculo-péritonéal", "Un drain ventriculaire externe (DVE)", "Un cathéter de Rickham"],
+    answer: 1,
+    explain: "Le drain ventriculaire externe (DVE) est un dispositif médical qui permet d'évacuer le liquide céphalo-rachidien et le sang accumulés dans les ventricules cérébraux. Il fait baisser la pression à l'intérieur de la boîte crânienne et peut être retiré une fois la situation stabilisée."
+  },
+  {
+    q: "Vers quel hôpital Kevin a-t-il été héliporté après l'accident ?",
+    opts: ["Hôpital de Grenoble", "Hôpital de Chambéry", "Hôpital de Lyon"],
+    answer: 1,
+    explain: "Kevin a été héliporté vers le centre hospitalier de Chambéry, en Savoie, où une imagerie complète a été réalisée. C'est dans cet établissement que le diagnostic d'hématome sous-dural a été posé et que l'intervention chirurgicale d'urgence a eu lieu."
+  },
+  {
+    q: "Quel dispositif les secouristes ont-ils posé à Kevin pour protéger sa colonne vertébrale ?",
+    opts: ["Une attelle dorsale", "Un collier cervical", "Un matelas coquille"],
+    answer: 1,
+    explain: "Les secouristes ont posé un collier cervical à Kevin pour immobiliser le rachis cervical et protéger sa colonne vertébrale. Ce geste est essentiel lors de tout traumatisme avec suspicion d'atteinte neurologique, car tout mouvement de la tête pourrait aggraver d'éventuelles lésions de la moelle épinière."
+  },
+  {
+    q: "Quel risque accru présente une personne ayant déjà subi un traumatisme cérébral ?",
+    opts: ["2 fois plus de risques", "4 fois plus de risques", "6 fois plus de risques"],
+    answer: 2,
+    explain: "Selon le neurologue de Kevin, une personne ayant déjà subi une atteinte cérébrale a six fois plus de risques d'en subir une nouvelle. C'est l'un des arguments médicaux majeurs qui ont été opposés à Kevin lorsqu'il souhaitait reprendre le snowboard."
+  },
+  {
+    q: "Comment s'appelle la fondation cofondée par Kevin et son frère Adam en 2014 ?",
+    opts: ["BrainSafe Foundation", "LoveYourBrain Foundation", "HeadFirst Foundation"],
+    answer: 1,
+    explain: "La LoveYourBrain Foundation, cofondée par Kevin et son frère Adam Pearce en 2014, propose des programmes de yoga, de méditation et de pleine conscience pour les personnes victimes de traumatismes crâniens. Elle est active dans 35 États américains et au Canada, et a accompagné des milliers de personnes."
+  }
+];
+
+const quizEl = document.getElementById('quiz');
+let score = 0, answered = 0;
+
+questions.forEach((q, i) => {
+  const div = document.createElement('div');
+  div.className = 'quiz-q reveal';
+  div.innerHTML = '<span class="q-num">Question ' + (i+1) + ' / 10</span><h3>' + q.q + '</h3>';
+
+  q.opts.forEach((opt, j) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => {
+      if (div.dataset.done) return;
+      div.dataset.done = '1';
+      answered++;
+
+      // Lock all buttons
+      div.querySelectorAll('.quiz-opt').forEach(b => b.classList.add('locked'));
+
+      if (j === q.answer) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('wrong');
+        div.querySelectorAll('.quiz-opt')[q.answer].classList.add('correct');
+      }
+
+      // Show explanation
+      const exp = document.createElement('div');
+      exp.className = 'quiz-explain';
+      exp.textContent = q.explain;
+      div.appendChild(exp);
+
+      // Show final score
+      if (answered === questions.length) {
+        const res = document.getElementById('quiz-result');
+        res.hidden = false;
+        document.getElementById('quiz-score').textContent = score + ' / 10';
+      }
+    });
+    div.appendChild(btn);
+  });
+
+  quizEl.appendChild(div);
+  obs.observe(div);
+});
+</script>
